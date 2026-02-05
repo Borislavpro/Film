@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Под линията на облаците – Интерактивен сценарий</title>
+<style>
+    body {
+        background-color: #0d0d0d;
+        color: #f0f0f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    h1, h2 {
+        color: #ffcc00;
+        text-align: center;
+    }
+    select {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #1a1a1a;
+        color: #ffcc00;
+        border: 2px solid #ff6600;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .dialogue {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-left: 5px solid #ff6600;
+        background-color: #1a1a1a;
+        border-radius: 5px;
+    }
+    .scene-title {
+        font-weight: bold;
+        color: #00ccff;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .character-nicola { color: #ff6666; }
+    .character-elena { color: #66ff66; }
+    .character-mihail { color: #66ccff; }
+    .character-andrey { color: #ff66ff; }
+</style>
+</head>
+<body>
+
+<h1>Под линията на облаците</h1>
+<h2>Интерактивен сценарий</h2>
+
+<label for="heroSelect">Избери герой:</label>
+<select id="heroSelect">
+    <option value="all">Всички герои</option>
+    <option value="НИКОЛА">НИКОЛА</option>
+    <option value="ЕЛЕНА">ЕЛЕНА</option>
+    <option value="МИХАИЛ">МИХАИЛ</option>
+    <option value="АНДРЕЙ">АНДРЕЙ</option>
+</select>
+
+<div id="scriptContainer"></div>
+
+<script>
+    const script = [
+  {scene: "СЦЕНА 1", character: "НИКОЛА", text: "Всеки ден започва с избор – да вървиш или да стоиш."},
+
+  {scene: "СЦЕНА 2", character: "СОБСТВЕНИКЪТ", text: "Добро утро, Никола."},
+  {scene: "СЦЕНА 2", character: "НИКОЛА", text: "Добро утро."},
+
+  {scene: "СЦЕНА 3", character: "СОБСТВЕНИКЪТ", text: "Баща ти обичаше планината."},
+  {scene: "СЦЕНА 3", character: "НИКОЛА", text: "(кима)."},
+
+  {scene: "СЦЕНА 4", character: "НИКОЛА", text: "Мислех, че знам къде съм."},
+
+  {scene: "СЦЕНА 5", character: "ЕЛЕНА", text: "Трябва ли да се върнем?"},
+  {scene: "СЦЕНА 5", character: "АНДРЕЙ", text: "Не. Вече не."},
+
+  {scene: "СЦЕНА 6", character: "МИХАИЛ", text: "Внимавайте къде стъпвате."},
+
+  {scene: "СЦЕНА 7", character: "НИКОЛА", text: "Всеки връх започва с поток."},
+
+  {scene: "СЦЕНА 8", character: "МИХАИЛ", text: "Ще трябва да се катерите."},
+
+  {scene: "СЦЕНА 9", character: "НИКОЛА", text: "Добре ли си?"},
+  {scene: "СЦЕНА 9", character: "ЕЛЕНА", text: "Да, благодаря."},
+
+  {scene: "СЦЕНА 10", character: "АНДРЕЙ", text: "Страх ме е от височината."},
+  {scene: "СЦЕНА 10", character: "МИХАИЛ", text: "Това е нормално."},
+
+  {scene: "СЦЕНА 11", character: "НИКОЛА", text: "Гледа през прозореца."},
+
+  {scene: "СЦЕНА 12", character: "МИХАИЛ", text: "Разказва истории за предишни изкачвания."},
+
+  {scene: "СЦЕНА 13", character: "НИКОЛА", text: "Поема дълбоко въздух."},
+
+  {scene: "СЦЕНА 14", character: "АНДРЕЙ", text: "Задъхва се."},
+  {scene: "СЦЕНА 14", character: "НИКОЛА", text: "Подавам му ръка."},
+
+  {scene: "СЦЕНА 15", character: "МИХАИЛ", text: "Побързай."},
+  {scene: "СЦЕНА 15", character: "ЕЛЕНА", text: "Не мога да пропусна момента."},
+
+  {scene: "СЦЕНА 16", character: "НИКОЛА", text: "Понякога височината те учи да се смириш."},
+
+  {scene: "СЦЕНА 17", character: "СОБСТВЕНИКЪТ", text: "Ти си Петковият син, нали?"},
+  {scene: "СЦЕНА 17", character: "НИКОЛА", text: "Да."},
+  {scene: "СЦЕНА 17", character: "СОБСТВЕНИКЪТ", text: "Баща ти обичаше планината. Но никога не се качваше."},
+
+  {scene: "СЦЕНА 18", character: "ЕЛЕНА", text: "Не си длъжен да влизаш."},
+  {scene: "СЦЕНА 18", character: "НИКОЛА", text: "Не. Точно затова трябва."},
+
+  {scene: "СЦЕНА 19", character: "НИКОЛА", text: "Прах. Снимки по стените."},
+  {scene: "СЦЕНА 19", character: "НИКОЛА", text: "Намира стара карта на планината."},
+  {scene: "СЦЕНА 19", character: "МИХАИЛ", text: "Баща ти водеше хора… но никога себе си."},
+  {scene: "СЦЕНА 19", character: "НИКОЛА", text: "Стиска картата."},
+
+  {scene: "СЦЕНА 20", character: "АНДРЕЙ", text: "Мислех, че ако се кача високо, ще стана някой друг."},
+  {scene: "СЦЕНА 20", character: "ЕЛЕНА", text: "А сега?"},
+  {scene: "СЦЕНА 20", character: "АНДРЕЙ", text: "Сега разбирам, че съм достатъчен."},
+
+  {scene: "СЦЕНА 21", character: "МИХАИЛ", text: "Днес няма цел. Само вървене."},
+  {scene: "СЦЕНА 21", character: "НИКОЛА", text: "Може ли да продължа сам?"},
+  {scene: "СЦЕНА 21", character: "МИХАИЛ", text: "Планината не е място за самота. Но понякога – е."},
+
+  {scene: "СЦЕНА 22", character: "НИКОЛА", text: "Защо никога не тръгна?"},
+
+  {scene: "СЦЕНА 23", character: "АНДРЕЙ", text: "Мислех, че ще искам да покажа това на всички."},
+  {scene: "СЦЕНА 23", character: "МИХАИЛ", text: "И?"},
+  {scene: "СЦЕНА 23", character: "АНДРЕЙ", text: "Не. Искам само да го помня."},
+  {scene: "СЦЕНА 23", character: "ЕЛЕНА", text: "Усмихва се."},
+
+  {scene: "СЦЕНА 24", character: "НИКОЛА", text: "Достига място, от което се вижда цялата долина. Стои дълго, после бавно сваля раницата си. Сяда и затваря очи."},
+
+  {scene: "СЦЕНА 25", character: "БАЩАТА", text: "Не всеки връх е за изкачване."},
+  {scene: "СЦЕНА 25", character: "МЛАДИЯТ НИКОЛА", text: "А защо тогава ги има?"},
+  {scene: "СЦЕНА 25", character: "БАЩАТА", text: "За да знаем докъде стигаме… и кога да спрем."},
+
+  {scene: "СЦЕНА 26", character: "НИКОЛА", text: "Отваря очи. Поема дълбоко въздух. Не плаче. Само става по-изправен."},
+
+  {scene: "СЦЕНА 27", character: "ЕЛЕНА", text: "Добре ли си?"},
+  {scene: "СЦЕНА 27", character: "НИКОЛА", text: "Да. За първи път отдавна."},
+
+  {scene: "СЦЕНА 28", character: "АНДРЕЙ", text: "Мога ли да кажа нещо глупаво?"},
+  {scene: "СЦЕНА 28", character: "МИХАИЛ", text: "Най-важните неща започват така."},
+  {scene: "СЦЕНА 28", character: "АНДРЕЙ", text: "Страх ме е да се върна долу."},
+  {scene: "СЦЕНА 28", character: "ЕЛЕНА", text: "Всички ни е страх. Разликата е, че вече знаеш как да вървиш."},
+
+  {scene: "СЦЕНА 29", character: "ЕЛЕНА", text: "Всички спят. Оставам будна. Гледа снимките си. Спира на една – ръцете на НИКОЛА върху камък. Затваря апарата."},
+
+  {scene: "СЦЕНА 30", character: "МИХАИЛ", text: "Днес няма да се качваме никъде."},
+  {scene: "СЦЕНА 30", character: "АНДРЕЙ", text: "А какво ще правим?"},
+  {scene: "СЦЕНА 30", character: "МИХАИЛ", text: "Ще се върнем."},
+  {scene: "СЦЕНА 30", character: "НИКОЛА", text: "Кимва. ЕЛЕНА също."},
+
+{scene: "СЦЕНА 31", character: "АНДРЕЙ", text: "Върви уверено."},
+{scene: "СЦЕНА 31", character: "ЕЛЕНА", text: "Говори по-малко, но гледа повече."},
+{scene: "СЦЕНА 31", character: "НИКОЛА", text: "Носи раницата леко."},
+
+{scene: "СЦЕНА 32", character: "МИХАИЛ", text: "Планината не свършва тук. Само пътеката."},
+
+{scene: "СЦЕНА 33", character: "ЕЛЕНА", text: "Ще направя филм."},
+{scene: "СЦЕНА 33", character: "НИКОЛА", text: "За върха?"},
+{scene: "СЦЕНА 33", character: "ЕЛЕНА", text: "Не. За хората, които се връщат."},
+{scene: "СЦЕНА 33", character: "НИКОЛА", text: "Усмихва се."},
+
+{scene: "СЦЕНА 34", character: "АНДРЕЙ", text: "Гледа отражението си."},
+{scene: "СЦЕНА 34", character: "ЕЛЕНА", text: "Преглежда бележки."},
+{scene: "СЦЕНА 34", character: "НИКОЛА", text: "Гледа напред. Мълчание."},
+
+{scene: "СЦЕНА 35", character: "АНДРЕЙ", text: "Може ли… някой ден пак?"},
+{scene: "СЦЕНА 35", character: "НИКОЛА", text: "Да. Но не за да бягаме."},
+{scene: "СЦЕНА 35", character: "АНДРЕЙ", text: "Кимва и си тръгва."},
+
+{scene: "СЦЕНА 36", character: "ЕЛЕНА", text: "Седи пред компютър, монтира. На екрана – кадър на мъгла, която се вдига."},
+{scene: "СЦЕНА 36", character: "ЕЛЕНА", text: "Мислех, че планината е място. Оказа се – състояние."},
+
+{scene: "СЦЕНА 37", character: "НИКОЛА", text: "Работи с дърво."},
+{scene: "СЦЕНА 37", character: "СЪСЕДЪТ", text: "Пак ли ще тръгваш?"},
+{scene: "СЦЕНА 37", character: "НИКОЛА", text: "Не. Сега оставам."},
+
+{scene: "СЦЕНА 38", character: "АНДРЕЙ", text: "Седи сред студенти. Слуша. Присъства."},
+
+{scene: "СЦЕНА 39", character: "НИКОЛА", text: "Затваря очи за миг."},
+{scene: "СЦЕНА 39", character: "НАДПИС", text: "„Посветено на онези, които се върнаха.“"},
+
+{scene: "СЦЕНА 40", character: "НИКОЛА", text: "Камерата остава на нивото на пътеката. Слънцето изгрява. Мъглата се вдига."},
+{scene: "СЦЕНА 40", character: "ПОСЛЕДЕН НАДПИС", text: "„Не всичко, което е високо, е напред.“"},
+
+{scene: "СЦЕНА 41", character: "НИКОЛА", text: "Върви сам, спира, поставя ръка на ствола на дърво. Звукът от града заглъхва, чува се вятър."},
+
+{scene: "СЦЕНА 42", character: "ЕЛЕНА", text: "Подрежда кадри на стената. Телефонът ѝ звъни, не вдига веднага."},
+
+{scene: "СЦЕНА 43", character: "ДЕТЕТО", text: "Чичо… там горе какво има?"},
+{scene: "СЦЕНА 43", character: "МИХАИЛ", text: "Път."},
+
+{scene: "СЦЕНА 44", character: "АНДРЕЙ", text: "Чете, пише в тефтер: „Не е нужно да стигнеш върха, за да разбереш къде си.“"},
+
+{scene: "СЦЕНА 45", character: "НИКОЛА", text: "Отключва старата къща. Оставя раницата в ъгъла."},
+
+{scene: "СЦЕНА 46", character: "НИКОЛА", text: "Влиза тихо."},
+{scene: "СЦЕНА 46", character: "НИКОЛА", text: "Хората харесаха филма."},
+{scene: "СЦЕНА 46", character: "ЕЛЕНА", text: "Не е важно. Важно е, че вече не ме боли."},
+
+{scene: "СЦЕНА 47", character: "НИКОЛА", text: "Върви заедно с ЕЛЕНА и АНДРЕЙ. Без раници. Без цел."},
+
+{scene: "СЦЕНА 48", character: "НИКОЛА", text: "Върви сам. Спира, оглежда се."},
+
+{scene: "СЦЕНА 49", character: "ЕЛЕНА", text: "Приближава се. Стъпките им се синхронизират с АНДРЕЙ."},
+
+{scene: "СЦЕНА 50", character: "ЕЛЕНА", text: "Вади фотоапарата, после го прибира обратно. Няма нужда."},
+{scene: "СЦЕНА 50", character: "НИКОЛА", text: "Кимва."},
+
+{scene: "СЦЕНА 51", character: "АНДРЕЙ", text: "Сяда на тревата. Странно… не ми липсва нищо."},
+{scene: "СЦЕНА 51", character: "НИКОЛА", text: "Това значи, че си на мястото си."},
+
+{scene: "СЦЕНА 52", character: "НИКОЛА", text: "Тримата продължават. Камерата ги следва бавно. После спира. Те излизат от кадър."},
+{scene: "СЦЕНА 52", character: "ПОСЛЕДЕН НАДПИС", text: "„Не всички вървят, за да стигнат. Някои вървят, за да останат.“"}
+
+];
+
+const scriptContainer = document.getElementById('scriptContainer');
+const heroSelect = document.getElementById('heroSelect');
+
+function displayScript(hero) {
+    scriptContainer.innerHTML = '';
+    let lastCharacter = null;
+    script.forEach(line => {
+        if(hero === "all" || line.character === hero) {
+            let showLine = false;
+            if(hero !== "all" && lastCharacter && lastCharacter !== line.character) {
+                // Покажи последната реплика на предишния герой
+                const prevLine = document.createElement('div');
+                prevLine.className = 'dialogue character-' + lastCharacter.toLowerCase();
+                prevLine.textContent = `(${lastCharacter}) …`;
+                scriptContainer.appendChild(prevLine);
+            }
+            const div = document.createElement('div');
+            div.className = 'dialogue character-' + line.character.toLowerCase();
+            div.textContent = `(${line.character}) ${line.text}`;
+            scriptContainer.appendChild(div);
+            lastCharacter = line.character;
+        }
+    });
+}
+
+heroSelect.addEventListener('change', () => {
+    displayScript(heroSelect.value);
+});
+
+// Показваме първоначално всички реплики
+displayScript('all');
+</script>
+
+</body>
+</html>
